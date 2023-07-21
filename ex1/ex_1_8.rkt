@@ -1,4 +1,5 @@
 #lang racket/base
+
 (define (cbrt-iter guess prev-guess x)
     (if (good-enough? guess prev-guess) guess (cbrt-iter (improve guess x) guess x))
 )
@@ -8,13 +9,13 @@
 )
 
 (define (good-enough? guess prev-guess)
-    (< (abs (- guess prev-guess)) 0.001)
+    (< (abs (- 1 (/ guess prev-guess))) 1e-7)
 )
 
 (define (square x) (* x x))
 
 (define (cube x) (* x x x))
 
-(define (cbrt x) (cbrt-iter 1.0 0 x))
+(define (cbrt x) (cbrt-iter 1.0 0.1 x))
 
 (cbrt 27)
